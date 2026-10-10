@@ -1,0 +1,36 @@
+  spring:
+    application:
+      name: demo
+    datasource:
+      url: jdbc:mysql://localhost:3306/ecofarmDB?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:1234}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        naming:
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    sql:
+      init:
+        mode: always
+
+  jwt:
+    secret: ${JWT_SECRET:local-dev-secret-key-change-me-it-must-be-at-least-64-bytes-long-0123456789abcdef}
+
+  ncp:
+    access-key: ${NCP_ACCESS_KEY:}
+    secret-key: ${NCP_SECRET_KEY:}
+
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      org.springframework.security: DEBUG
+      springframework: DEBUG
+
